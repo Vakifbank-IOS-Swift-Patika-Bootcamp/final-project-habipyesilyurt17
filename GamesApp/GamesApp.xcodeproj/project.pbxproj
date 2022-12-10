@@ -23,6 +23,8 @@
 		9F64A38B2945174200266F5B /* GameListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F64A38A2945174200266F5B /* GameListVC.swift */; };
 		9F64A38E294517EF00266F5B /* GameListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F64A38C294517EF00266F5B /* GameListTableViewCell.swift */; };
 		9F64A38F294517EF00266F5B /* GameListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F64A38D294517EF00266F5B /* GameListTableViewCell.xib */; };
+		9F64A39129452F4400266F5B /* GameListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F64A39029452F4400266F5B /* GameListViewModel.swift */; };
+		9F64A3942945383400266F5B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9F64A3932945383400266F5B /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,7 @@
 		9F64A38A2945174200266F5B /* GameListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListVC.swift; sourceTree = "<group>"; };
 		9F64A38C294517EF00266F5B /* GameListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListTableViewCell.swift; sourceTree = "<group>"; };
 		9F64A38D294517EF00266F5B /* GameListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameListTableViewCell.xib; sourceTree = "<group>"; };
+		9F64A39029452F4400266F5B /* GameListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F64A3942945383400266F5B /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +126,7 @@
 		9F167F26294466BE00AB313A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9F64A39029452F4400266F5B /* GameListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -228,6 +233,9 @@
 			dependencies = (
 			);
 			name = GamesApp;
+			packageProductDependencies = (
+				9F64A3932945383400266F5B /* Kingfisher */,
+			);
 			productName = GamesApp;
 			productReference = 9F2AC7202943BEC900D75353 /* GamesApp.app */;
 			productType = "com.apple.product-type.application";
@@ -300,6 +308,9 @@
 				Base,
 			);
 			mainGroup = 9F2AC7172943BEC900D75353;
+			packageReferences = (
+				9F64A3922945383400266F5B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 9F2AC7212943BEC900D75353 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -344,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F64A39129452F4400266F5B /* GameListViewModel.swift in Sources */,
 				9F167F2A294491C600AB313A /* NetworkHelper.swift in Sources */,
 				9F2AC7242943BEC900D75353 /* AppDelegate.swift in Sources */,
 				9F64A38B2945174200266F5B /* GameListVC.swift in Sources */,
@@ -688,6 +700,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F64A3922945383400266F5B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 7.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F64A3932945383400266F5B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F64A3922945383400266F5B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		9F2AC72C2943BEC900D75353 /* GamesApp.xcdatamodeld */ = {

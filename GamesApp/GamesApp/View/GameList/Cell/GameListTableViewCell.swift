@@ -6,9 +6,20 @@
 //
 
 import UIKit
+import Kingfisher
+
 
 final class GameListTableViewCell: UITableViewCell {
     @IBOutlet weak var gameImage: UIImageView!
     @IBOutlet weak var gameTitle: UILabel!
     
+    func configureCell(model: Game) {
+        gameTitle.text = model.name
+        guard let url = URL(string: model.backgroundImage) else { return }
+        gameImage.kf.setImage(with: url)
+    }
+    
+    override func prepareForReuse() {
+        gameImage.image = nil
+    }
 }
