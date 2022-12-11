@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class GameListVC: UIViewController {
+final class GameListVC: BaseVC {
     @IBOutlet weak var gameSearchBar: UISearchBar!
     @IBOutlet weak var gameTableView: UITableView!
     
@@ -16,6 +16,7 @@ final class GameListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureGameTableView()
+        indicator.startAnimating()
         gameListViewModel.delegate = self
         gameListViewModel.fetchGames()
     }
@@ -33,6 +34,7 @@ final class GameListVC: UIViewController {
 
 extension GameListVC: GameListViewModelDelegate {
     func gamesLoaded() {
+        indicator.stopAnimating()
         gameTableView.reloadData()
     }
 }

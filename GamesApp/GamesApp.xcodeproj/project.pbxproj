@@ -25,6 +25,8 @@
 		9F64A38F294517EF00266F5B /* GameListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F64A38D294517EF00266F5B /* GameListTableViewCell.xib */; };
 		9F64A39129452F4400266F5B /* GameListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F64A39029452F4400266F5B /* GameListViewModel.swift */; };
 		9F64A3942945383400266F5B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9F64A3932945383400266F5B /* Kingfisher */; };
+		9FB1035A294596F4006257B2 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB10359294596F4006257B2 /* BaseVC.swift */; };
+		9FB1035D29459742006257B2 /* MaterialActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 9FB1035C29459742006257B2 /* MaterialActivityIndicator */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,7 @@
 		9F64A38C294517EF00266F5B /* GameListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListTableViewCell.swift; sourceTree = "<group>"; };
 		9F64A38D294517EF00266F5B /* GameListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameListTableViewCell.xib; sourceTree = "<group>"; };
 		9F64A39029452F4400266F5B /* GameListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListViewModel.swift; sourceTree = "<group>"; };
+		9FB10359294596F4006257B2 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB1035D29459742006257B2 /* MaterialActivityIndicator in Frameworks */,
 				9F64A3942945383400266F5B /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +122,7 @@
 		9F167F25294466B300AB313A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9FB10359294596F4006257B2 /* BaseVC.swift */,
 				9F64A3882945170100266F5B /* GameList */,
 			);
 			path = View;
@@ -235,6 +240,7 @@
 			name = GamesApp;
 			packageProductDependencies = (
 				9F64A3932945383400266F5B /* Kingfisher */,
+				9FB1035C29459742006257B2 /* MaterialActivityIndicator */,
 			);
 			productName = GamesApp;
 			productReference = 9F2AC7202943BEC900D75353 /* GamesApp.app */;
@@ -310,6 +316,7 @@
 			mainGroup = 9F2AC7172943BEC900D75353;
 			packageReferences = (
 				9F64A3922945383400266F5B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9FB1035B29459742006257B2 /* XCRemoteSwiftPackageReference "MaterialActivityIndicator" */,
 			);
 			productRefGroup = 9F2AC7212943BEC900D75353 /* Products */;
 			projectDirPath = "";
@@ -356,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F64A39129452F4400266F5B /* GameListViewModel.swift in Sources */,
+				9FB1035A294596F4006257B2 /* BaseVC.swift in Sources */,
 				9F167F2A294491C600AB313A /* NetworkHelper.swift in Sources */,
 				9F2AC7242943BEC900D75353 /* AppDelegate.swift in Sources */,
 				9F64A38B2945174200266F5B /* GameListVC.swift in Sources */,
@@ -710,6 +718,14 @@
 				minimumVersion = 7.4.0;
 			};
 		};
+		9FB1035B29459742006257B2 /* XCRemoteSwiftPackageReference "MaterialActivityIndicator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nspavlo/MaterialActivityIndicator.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -717,6 +733,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9F64A3922945383400266F5B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		9FB1035C29459742006257B2 /* MaterialActivityIndicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FB1035B29459742006257B2 /* XCRemoteSwiftPackageReference "MaterialActivityIndicator" */;
+			productName = MaterialActivityIndicator;
 		};
 /* End XCSwiftPackageProductDependency section */
 
