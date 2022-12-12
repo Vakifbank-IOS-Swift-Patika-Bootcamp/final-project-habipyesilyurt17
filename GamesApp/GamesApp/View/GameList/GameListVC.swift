@@ -18,7 +18,10 @@ final class GameListVC: BaseVC {
         configureGameTableView()
         indicator.startAnimating()
         gameListViewModel.delegate = self
-        gameListViewModel.fetchGames()
+        gameListViewModel.fetchGames(isPagination: false) { errorMessage in
+            guard let errorMessage = errorMessage else { return }
+            print("errorMessage = \(errorMessage)")
+        }
     }
     
     @IBAction func gamesOrderButtonPressed(_ sender: Any) {
@@ -52,5 +55,29 @@ extension GameListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+}
+
+extension GameListVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY       = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY > contentHeight - scrollView.frame.size.height {
+            gameTableView.tableFooterView = createSpinnerFooter()
+            gameListViewModel.fetchGames(isPagination: true) { errorMessage in
+                self.gameTableView.tableFooterView = nil
+                guard let errorMessage = errorMessage else { return }
+                print("errorMessage = \(errorMessage)")
+            }
+        }
+    }
+    
+    private func createSpinnerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        footerView.addSubview(indicator)
+        indicator.centerXAnchor.constraint(equalTo: footerView.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: footerView.centerYAnchor).isActive = true
+        indicator.startAnimating()
+        return footerView
     }
 }
