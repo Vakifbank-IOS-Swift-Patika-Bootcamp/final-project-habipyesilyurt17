@@ -13,6 +13,7 @@ protocol GameListViewModelProtocol {
     func getGameCount() -> Int
     func getGame(at index: Int) -> Game?
     func getGameId(at index: Int) -> Int?
+    func searchGame(searchText: String)
 }
 
 protocol GameListViewModelDelegate: AnyObject {
@@ -22,6 +23,7 @@ protocol GameListViewModelDelegate: AnyObject {
 final class GameListViewModel: GameListViewModelProtocol {
     weak var delegate: GameListViewModelDelegate?
     private var games: [Game]?
+    private var filteredGames: [Game]?
     var nextPage: String?
     
     func fetchGames(isPagination: Bool, completion: @escaping (String?) -> ()) {
@@ -34,6 +36,7 @@ final class GameListViewModel: GameListViewModelProtocol {
             } else {
                 self.games = games
             }
+            self.filteredGames = self.games
             self.nextPage = next
             self.delegate?.gamesLoaded()
             completion(error)
@@ -41,14 +44,28 @@ final class GameListViewModel: GameListViewModelProtocol {
     }
     
     func getGameCount() -> Int {
-        games?.count ?? 0
+        filteredGames?.count ?? 0
     }
     
     func getGame(at index: Int) -> Game? {
-        games?[index]
+        filteredGames?[index]
     }
     
     func getGameId(at index: Int) -> Int? {
-        games?[index].id
+        filteredGames?[index].id
+    }
+    
+    func searchGame(searchText: String) {
+        filteredGames = []
+        if searchText == "" {
+            filteredGames = games
+        } else {
+            guard let games = games else { return }
+            for game in games {
+                if game.name.lowercased().contains(searchText.lowercased()) {
+                    filteredGames?.append(game)
+                }
+            }
+        }
     }
 }

@@ -16,6 +16,7 @@ final class GameListVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureGameTableView()
+        configureSearchBar()
         indicator.startAnimating()
         gameListViewModel.delegate = self
         gameListViewModel.fetchGames(isPagination: false) { errorMessage in
@@ -32,6 +33,11 @@ final class GameListVC: BaseVC {
         gameTableView.delegate   = self
         gameTableView.register(UINib(nibName: "GameListTableViewCell", bundle: nil), forCellReuseIdentifier: "GameCell")
         gameTableView.estimatedRowHeight = UITableView.automaticDimension
+    }
+    
+    private func configureSearchBar() {
+        gameSearchBar.placeholder = "Search a game"
+        gameSearchBar.delegate = self
     }
 }
 
@@ -79,5 +85,12 @@ extension GameListVC: UIScrollViewDelegate {
         indicator.centerYAnchor.constraint(equalTo: footerView.centerYAnchor).isActive = true
         indicator.startAnimating()
         return footerView
+    }
+}
+
+extension GameListVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        gameListViewModel.searchGame(searchText: searchText)
+        gameTableView.reloadData()
     }
 }
