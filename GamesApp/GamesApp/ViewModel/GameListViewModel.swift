@@ -10,6 +10,7 @@ import Foundation
 protocol GameListViewModelProtocol {
     var delegate: GameListViewModelDelegate? { get set }
     func fetchGames(isPagination: Bool, completion: @escaping (String?) -> ())
+    func fetchTopRatedGamesOf2022(isPagination: Bool, completion: @escaping (_ isSuccess: Bool, String?) -> ())
     func getGameCount() -> Int
     func getGame(at index: Int) -> Game?
     func getGameId(at index: Int) -> Int?
@@ -42,6 +43,30 @@ final class GameListViewModel: GameListViewModelProtocol {
             completion(error)
         }
     }
+    
+    func fetchTopRatedGamesOf2022(isPagination: Bool, completion: @escaping (_ isSuccess: Bool, String?) -> ()) {
+        guard !NetworkManager.shared.isPaginating else { return }
+        NetworkManager.shared.getTopRatedGamesOf2022(isPagination: isPagination, nextPage: nextPage) { [weak self] games, next, error in
+            if error != nil {
+                completion(false, error)
+            } else {
+                guard let self = self else { return }
+                self.games?.removeAll()
+                if isPagination {
+                    guard let games = games else { return }
+                    self.games?.append(contentsOf: games)
+                } else {
+                    self.games = games
+                }
+                self.filteredGames = self.games
+                self.nextPage = next
+                self.delegate?.gamesLoaded()
+                completion(true, nil)
+            }
+        }
+
+    }
+
     
     func getGameCount() -> Int {
         filteredGames?.count ?? 0

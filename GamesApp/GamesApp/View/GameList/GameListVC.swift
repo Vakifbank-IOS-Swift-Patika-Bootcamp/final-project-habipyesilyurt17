@@ -26,6 +26,22 @@ final class GameListVC: BaseVC {
     }
     
     @IBAction func gamesOrderButtonPressed(_ sender: Any) {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurVisualEffectView = UIVisualEffectView(effect: blurEffect)
+        blurVisualEffectView.frame = view.bounds
+        blurVisualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        self.gameTableView.addSubview(blurVisualEffectView)
+        indicator.startAnimating()
+        gameListViewModel.fetchTopRatedGamesOf2022(isPagination: false) { isSuccess, errorMessage in
+            if isSuccess {
+                blurVisualEffectView.removeFromSuperview()
+            } else {
+                guard let errorMessage = errorMessage else { return }
+                print("errorMessage = \(errorMessage)")
+            }
+        }
+        
     }
     
     private func configureGameTableView() {
