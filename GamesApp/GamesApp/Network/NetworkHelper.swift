@@ -19,17 +19,17 @@ enum ErrorTypes: String, Error {
 
 enum GameEndPoint: String {
     case BASE_URL = "https://api.rawg.io/api"
-    case API_URL  = "/games?"
+    case API_URL  = "/games"
     case API_KEY  = "key=ded10ba013a0407eb15d07339795c01e"
 }
 
 enum APIURLs {
     static func allGames() -> String {
-        GameEndPoint.BASE_URL.rawValue + GameEndPoint.API_URL.rawValue + GameEndPoint.API_KEY.rawValue
+        GameEndPoint.BASE_URL.rawValue + GameEndPoint.API_URL.rawValue + "?" + GameEndPoint.API_KEY.rawValue
     }
     
     static func gameDetail(gameId: Int) -> String {
-        GameEndPoint.BASE_URL.rawValue + GameEndPoint.API_URL.rawValue + "/\(gameId)" + GameEndPoint.API_KEY.rawValue
+        GameEndPoint.BASE_URL.rawValue + GameEndPoint.API_URL.rawValue + "/\(gameId)" + "?" + GameEndPoint.API_KEY.rawValue
     }
     
     static func topRatedGamesOf2022() -> String {
