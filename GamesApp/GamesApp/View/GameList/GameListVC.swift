@@ -39,6 +39,7 @@ final class GameListVC: BaseVC {
             } else {
                 guard let errorMessage = errorMessage else { return }
                 print("errorMessage = \(errorMessage)")
+                self.indicator.stopAnimating()
             }
         }
         
@@ -74,7 +75,13 @@ extension GameListVC: UITableViewDataSource, UITableViewDelegate {
         cell.configureCell(model: model)
         return cell
     }
-    
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "GameDetailVC") as? GameDetailVC else { return }
+        detailVC.gameId = gameListViewModel.getGameId(at: indexPath.row)
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
