@@ -14,6 +14,7 @@ final class GameDetailVC: BaseVC {
     @IBOutlet weak var gameRating: UILabel!
     @IBOutlet weak var gameReleased: UILabel!
     @IBOutlet weak var gameDescription: UITextView!
+    @IBOutlet weak var favoriteButton: UIButton!
     var gameId: Int?
     private var gameDetailViewModel: GameDetailViewModelProtocol = GameDetailViewModel()
     
@@ -43,6 +44,11 @@ final class GameDetailVC: BaseVC {
         guard let webViewVC = storyboard?.instantiateViewController(withIdentifier: "WebViewVC") as? WebViewVC else { return }
         webViewVC.urlString = gameDetailViewModel.getGameWebsite()
         navigationController?.pushViewController(webViewVC, animated: true)
+    }
+    
+    
+    @IBAction func favoriteButtonPressed(_ sender: Any) {
+        //favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
     }
     
 }

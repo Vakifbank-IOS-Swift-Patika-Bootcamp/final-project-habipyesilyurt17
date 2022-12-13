@@ -83,7 +83,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v45-ND-dPY">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v45-ND-dPY">
                                 <rect key="frame" x="0.0" y="59" width="430" height="372.66666666666669"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="vLS-dY-kmA"/>
@@ -118,19 +118,30 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFO-Na-tGV">
-                                        <rect key="frame" x="174.33333333333334" y="0.0" width="7.6666666666666572" height="34.333333333333336"/>
+                                        <rect key="frame" x="101.66666666666667" y="0.0" width="7.6666666666666714" height="34.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2S-XC-eDS">
-                                        <rect key="frame" x="348.33333333333331" y="0.0" width="49.666666666666686" height="34.333333333333336"/>
+                                        <rect key="frame" x="203.66666666666666" y="0.0" width="49.666666666666657" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="network" catalog="system">
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="websiteButtonPressed:" destination="bft-mb-NcX" eventType="touchUpInside" id="bj5-va-e96"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAp-hE-3Q5">
+                                        <rect key="frame" x="347.33333333333331" y="0.0" width="50.666666666666686" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                            <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="favoriteButtonPressed:" destination="bft-mb-NcX" eventType="touchUpInside" id="d5b-CM-HzC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -177,12 +188,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="04k-zN-e5Y"/>
-                                <exclude reference="FK8-gU-ccB"/>
-                                <exclude reference="QU5-xR-AyD"/>
-                                <exclude reference="eqv-QZ-TJg"/>
-                                <exclude reference="qYi-uD-pf5"/>
-                                <exclude reference="z4L-bu-CjB"/>
                                 <exclude reference="9BV-eh-w0i"/>
                                 <exclude reference="C96-Dd-Y3f"/>
                                 <exclude reference="MDT-ai-omO"/>
@@ -190,6 +195,12 @@
                                 <exclude reference="dky-Q6-yjO"/>
                                 <exclude reference="o0F-pr-bwC"/>
                                 <exclude reference="whZ-EX-LUX"/>
+                                <exclude reference="04k-zN-e5Y"/>
+                                <exclude reference="FK8-gU-ccB"/>
+                                <exclude reference="QU5-xR-AyD"/>
+                                <exclude reference="eqv-QZ-TJg"/>
+                                <exclude reference="qYi-uD-pf5"/>
+                                <exclude reference="z4L-bu-CjB"/>
                                 <exclude reference="3jO-UU-m8K"/>
                                 <exclude reference="FIS-cp-BBh"/>
                                 <exclude reference="GyD-kB-TZv"/>
@@ -209,11 +220,11 @@
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
+                                <include reference="9BV-eh-w0i"/>
+                                <include reference="MDT-ai-omO"/>
                                 <include reference="FK8-gU-ccB"/>
                                 <include reference="eqv-QZ-TJg"/>
                                 <include reference="qYi-uD-pf5"/>
-                                <include reference="9BV-eh-w0i"/>
-                                <include reference="MDT-ai-omO"/>
                                 <include reference="3jO-UU-m8K"/>
                                 <include reference="FIS-cp-BBh"/>
                                 <include reference="GyD-kB-TZv"/>
@@ -227,14 +238,14 @@
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="constraints">
-                                <include reference="04k-zN-e5Y"/>
-                                <include reference="QU5-xR-AyD"/>
-                                <include reference="z4L-bu-CjB"/>
                                 <include reference="C96-Dd-Y3f"/>
                                 <include reference="cr1-dS-ZLN"/>
                                 <include reference="dky-Q6-yjO"/>
                                 <include reference="o0F-pr-bwC"/>
                                 <include reference="whZ-EX-LUX"/>
+                                <include reference="04k-zN-e5Y"/>
+                                <include reference="QU5-xR-AyD"/>
+                                <include reference="z4L-bu-CjB"/>
                                 <include reference="X5l-12-wm4"/>
                                 <include reference="wno-UO-GOm"/>
                                 <include reference="HhZ-NA-VH8"/>
@@ -245,6 +256,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="favoriteButton" destination="QAp-hE-3Q5" id="86z-dS-I5P"/>
                         <outlet property="gameDescription" destination="nHh-Br-VJ3" id="Zdp-gL-P5A"/>
                         <outlet property="gameImage" destination="v45-ND-dPY" id="IV6-fa-FV3"/>
                         <outlet property="gameRating" destination="gSo-Ym-jOs" id="F6l-jF-gER"/>
@@ -254,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6L9-Cr-3Rb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1912.6609442060087" y="110.23255813953489"/>
+            <point key="canvasLocation" x="1911.6279069767443" y="110.08583690987125"/>
         </scene>
         <!--Web ViewVC-->
         <scene sceneID="s3M-i7-id2">
@@ -314,6 +326,7 @@
     </scenes>
     <resources>
         <image name="gamecontroller" catalog="system" width="128" height="79"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="network" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
@@ -321,6 +334,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
