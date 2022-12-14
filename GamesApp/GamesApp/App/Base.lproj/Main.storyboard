@@ -13,13 +13,15 @@
         <scene sceneID="J59-se-qkk">
             <objects>
                 <tabBarController id="mGp-Zd-xu7" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JTH-zC-5K7">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="JTH-zC-5K7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="DEP-jS-IbE" kind="relationship" relationship="viewControllers" id="BPl-MN-C4s"/>
+                        <segue destination="tVk-Nf-nYl" kind="relationship" relationship="viewControllers" id="IlF-9g-cWe"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVt-jg-4D4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -285,11 +287,11 @@
             </objects>
             <point key="canvasLocation" x="2549" y="109"/>
         </scene>
-        <!--Games-->
+        <!--Navigation Controller-->
         <scene sceneID="xw6-nz-950">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DEP-jS-IbE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Games" id="vhw-w9-LUQ">
+                    <tabBarItem key="tabBarItem" title="" id="vhw-w9-LUQ">
                         <imageReference key="image" image="gamecontroller" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -306,10 +308,44 @@
             </objects>
             <point key="canvasLocation" x="51.145038167938928" y="110.56338028169014"/>
         </scene>
+        <!--Favorite Game ListVC-->
+        <scene sceneID="vdm-1e-AGZ">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteGameListVC" id="tVk-Nf-nYl" customClass="FavoriteGameListVC" customModule="GamesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MTP-IF-W0N">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="me1-c5-WHX">
+                                <rect key="frame" x="0.0" y="59" width="430" height="790"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Rut-I8-anX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rut-I8-anX" firstAttribute="trailing" secondItem="me1-c5-WHX" secondAttribute="trailing" id="O1Q-WM-p3O"/>
+                            <constraint firstItem="me1-c5-WHX" firstAttribute="top" secondItem="Rut-I8-anX" secondAttribute="top" id="Zis-jZ-VHI"/>
+                            <constraint firstItem="Rut-I8-anX" firstAttribute="bottom" secondItem="me1-c5-WHX" secondAttribute="bottom" id="amt-0D-1ss"/>
+                            <constraint firstItem="me1-c5-WHX" firstAttribute="leading" secondItem="Rut-I8-anX" secondAttribute="leading" id="vd7-oi-nvE"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="Xdw-Kq-i0h">
+                        <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large" variableValue="1"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="favoriteGamesTableView" destination="me1-c5-WHX" id="kfj-HU-FII"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qsX-s9-rtW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1136" y="981"/>
+        </scene>
     </scenes>
     <resources>
         <image name="gamecontroller" catalog="system" width="128" height="79"/>
         <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="network" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
