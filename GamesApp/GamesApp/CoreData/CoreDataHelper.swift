@@ -19,12 +19,6 @@ enum CoreDataError: String, Error {
 protocol CoreDataProtocol {
     associatedtype T
     func saveData(data: T, completion: @escaping (_ isSuccess: Bool, CoreDataError)->())
-    func fetchData(completion: @escaping ([FavoriteGames]?, CoreDataError)->())
+    func fetchData(completion: @escaping ([T]?, CoreDataError)->())
     func deleteData(id: Int, completion: @escaping (_ isSuccess: Bool, CoreDataError)->())
-}
-
-extension CoreDataProtocol {
-    func updateData(id: Int, completion: @escaping (_ isSuccess: Bool, CoreDataError)->()) {
-        
-    }
 }
