@@ -12,13 +12,14 @@ enum CoreDataError: String, Error {
     case removingError = "Data couldn't be removed"
     case fetchingError = "Data couldn't be fetched"
     case checkingError = "Data couldn't be checked"
+    case dataError     = "Data couldn't be find"
     case noError
 }
 
 protocol CoreDataProtocol {
     associatedtype T
     func saveData(data: T, completion: @escaping (_ isSuccess: Bool, CoreDataError)->())
-    func fetchData(id: Int, completion: @escaping (Result<[T], CoreDataError>)->())
+    func fetchData(completion: @escaping ([FavoriteGames]?, CoreDataError)->())
     func deleteData(id: Int, completion: @escaping (_ isSuccess: Bool, CoreDataError)->())
 }
 

@@ -15,7 +15,8 @@ struct GameDetailModel: Decodable {
     let rating: Double
     let descriptionRaw: String
     let backgroundImage: String
-    
+    var isFavorite: Bool = false
+
     enum CodingKeys: String, CodingKey {
         case id, name, released, website, rating
         case descriptionRaw  = "description_raw"

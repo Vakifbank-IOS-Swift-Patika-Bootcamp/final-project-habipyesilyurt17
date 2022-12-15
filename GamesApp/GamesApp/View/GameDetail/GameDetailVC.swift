@@ -13,6 +13,7 @@ final class GameDetailVC: BaseVC {
     @IBOutlet weak var gameRating: UILabel!
     @IBOutlet weak var gameReleased: UILabel!
     @IBOutlet weak var gameDescription: UITextView!
+    @IBOutlet weak var favoriteButton: UIButton!
 
     var gameId: Int?
     private var gameDetailViewModel: GameDetailViewModelProtocol = GameDetailViewModel()
@@ -46,6 +47,41 @@ final class GameDetailVC: BaseVC {
     
     
     @IBAction func favoriteGameButtonPressed(_ sender: Any) {
+        if gameDetailViewModel.gameIsFavorite() {
+            guard let gameId = gameId else { return }
+            FavoriteGamesManager.shared.deleteData(id: gameId) { [weak self] isSuccess, deleteError in
+                guard let self = self else { return }
+                if isSuccess {
+                    self.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                    NotificationCenter.default.post(name: NSNotification.Name("deleteData"), object: nil)
+                } else {
+                    print("error: \(deleteError)")
+                }
+            }
+        } else {
+            let favoriteGame = createNewFavoriteGame()
+            FavoriteGamesManager.shared.saveData(data: favoriteGame) { [weak self] isSuccess, saveError in
+                guard let self = self else { return }
+                if isSuccess {
+                    self.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                } else {
+                    print("error: \(saveError)")
+                }
+            }
+        }
+    }
+    
+    private func createNewFavoriteGame() -> FavoriteGames {
+        let newGame = FavoriteGames(context: FavoriteGamesManager.shared.context)
+        newGame.setValue(gameId, forKey: "gameId")
+        newGame.setValue(gameTitle.text, forKey: "name")
+        newGame.setValue(Double(gameDetailViewModel.getGameRating()), forKey: "rating")
+        newGame.setValue(gameDetailViewModel.getGameReleased(), forKey: "released")
+        newGame.setValue(gameDescription.text, forKey: "desc")
+        newGame.setValue(Date(), forKey: "createdAt")
+        guard let imageData = gameImage.image else { return newGame }
+        newGame.setValue(imageData.pngData(), forKey: "image")
+        return newGame
     }
     
 }
@@ -60,6 +96,12 @@ extension GameDetailVC: GameDetailViewModelDelegate {
         gameReleased.attributedText = configureLabelWithIcon(labelText: gameDetailViewModel.getGameReleased(), icon: "calendar")
         gameDescription.text = gameDetailViewModel.getGameDescription()
         gameDescription.isEditable = false
+        
+        if gameDetailViewModel.gameIsFavorite() {
+            favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
     }
 
     private func configureLabelWithIcon(labelText: String, icon: String) -> NSMutableAttributedString {

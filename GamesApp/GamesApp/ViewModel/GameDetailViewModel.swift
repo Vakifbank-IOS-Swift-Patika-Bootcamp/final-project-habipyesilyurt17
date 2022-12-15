@@ -16,6 +16,7 @@ protocol GameDetailViewModelProtocol {
     func getGameReleased() -> String
     func getGameWebsite() -> String
     func getGameDescription() -> String
+    func gameIsFavorite() -> Bool
 }
 
 protocol GameDetailViewModelDelegate: AnyObject {
@@ -33,6 +34,17 @@ final class GameDetailViewModel: GameDetailViewModelProtocol {
             } else {
                 guard let self = self else { return }
                 self.game = gameDetail
+                FavoriteGamesManager.shared.fetchData { favoriteGames, dataError in
+                    guard let favoriteGames = favoriteGames else { return }
+        
+                    favoriteGames.forEach { favoriteGame in
+                        if self.game!.id == favoriteGame.gameId {
+                            self.game?.isFavorite = true
+                            //break
+                        }
+                    }
+                    
+                }
                 self.delegate?.gameLoaded()
                 completion(true, nil)
             }
@@ -61,5 +73,9 @@ final class GameDetailViewModel: GameDetailViewModelProtocol {
 
     func getGameDescription() -> String {
         game?.descriptionRaw ?? ""
+    }
+
+    func gameIsFavorite() -> Bool {
+        game?.isFavorite ?? false
     }
 }

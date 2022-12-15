@@ -22,24 +22,25 @@ final class FavoriteGamesManager: CoreDataProtocol {
         }
     }
     
-    func fetchData(id: Int, completion: @escaping (Result<[FavoriteGames], CoreDataError>) -> ()) {
+    func fetchData(completion: @escaping ([FavoriteGames]?, CoreDataError) -> ()) {
         let fetchRequest = NSFetchRequest<FavoriteGames>(entityName: "FavoriteGames")
         let sortByCreatedAt = NSSortDescriptor(key: "createdAt", ascending: false)
         fetchRequest.sortDescriptors = [sortByCreatedAt]
         do {
             let games = try context.fetch(fetchRequest)
             if games.count > 0 {
-                completion(.success(games))
+                completion(games, .noError)
+            } else {
+                completion(nil, .dataError)
             }
         } catch {
-            completion(.failure(.fetchingError))
+            completion(nil, .fetchingError)
         }
     }
     
     func deleteData(id: Int, completion: @escaping (Bool, CoreDataError) -> ()) {
         let fetchRequest = NSFetchRequest<FavoriteGames>(entityName: "FavoriteGames")
-        fetchRequest.predicate = NSPredicate(format: "gameId = %@", id)
-        
+        fetchRequest.predicate = NSPredicate(format: "gameId = %@", String(id))
         do {
             if let result = try context.fetch(fetchRequest).first {
                 context.delete(result)
