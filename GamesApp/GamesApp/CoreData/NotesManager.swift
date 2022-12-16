@@ -53,28 +53,21 @@ final class NotesManager: CoreDataProtocol {
     }
     
     func updateData(id: Int, updatedNote: Notes, completion: @escaping (_ isSuccess: Bool, CoreDataError)->()) {
-        let fetchRequest = NSFetchRequest<Notes>(entityName: "Notes")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
         fetchRequest.predicate = NSPredicate(format: "id = %@", String(id))
+        context.mergePolicy = NSOverwriteMergePolicy
         do {
             let results = try  context.fetch(fetchRequest)
-            if results.count == 1 {
-                let objectUpdate = results[0] as NSManagedObject
-                if objectUpdate.value(forKey: "gameName") as? String != updatedNote.gameName {
-                    objectUpdate.setValue(updatedNote.gameName, forKey: "gameName")
-                }
-                if objectUpdate.value(forKey: "note") as? String != updatedNote.note {
-                    objectUpdate.setValue(updatedNote.note, forKey: "note")
-                }
-                do {
-                    try context.save()
-                    completion(true, .noError)
-                } catch {
-                    print("error: \(error.localizedDescription)")
-                    completion(false, .savingError)
-                }
+            let selectedNote = results[0] as! NSManagedObject
+            selectedNote.setValue(updatedNote.gameName, forKey: "gameName")
+            selectedNote.setValue(updatedNote.note, forKey: "note")
+            do {
+                try context.save()
+                completion(true, .noError)
+            } catch {
+                completion(false, .savingError)
             }
         } catch {
-            print("error: \(error.localizedDescription)")
             completion(false, .fetchingError)
         }
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 import MaterialActivityIndicator
+import SwiftAlertView
 
 class BaseVC: UIViewController {
     let indicator = MaterialActivityIndicatorView()
@@ -25,5 +26,11 @@ class BaseVC: UIViewController {
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    func showErrorAlert(message: String, completion: @escaping () -> Void ) {
+        SwiftAlertView.show(title: "Error", message: message, buttonTitles: ["Ok"]).onButtonClicked { _, _ in
+            completion()
+        }
     }
 }

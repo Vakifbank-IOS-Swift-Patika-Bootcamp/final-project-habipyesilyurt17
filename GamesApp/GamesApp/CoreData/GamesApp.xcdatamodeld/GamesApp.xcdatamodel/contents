@@ -14,5 +14,16 @@
         <attribute name="gameName" attributeType="String"/>
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="note" attributeType="String"/>
+        <fetchedProperty name="fetchedProperty" optional="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Notes"/>
+        </fetchedProperty>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="gameName"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="note"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
 </model>

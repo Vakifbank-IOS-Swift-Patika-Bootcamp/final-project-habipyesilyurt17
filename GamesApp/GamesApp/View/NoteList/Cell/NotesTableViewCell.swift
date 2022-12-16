@@ -10,4 +10,9 @@ import UIKit
 final class NotesTableViewCell: UITableViewCell {
     @IBOutlet weak var gameLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
+    
+    func configureCell(model: Notes) {
+        gameLabel.text = model.gameName
+        noteLabel.text = model.note
+    }
 }

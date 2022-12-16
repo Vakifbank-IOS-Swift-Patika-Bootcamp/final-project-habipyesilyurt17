@@ -23,7 +23,7 @@ final class FavoriteGameListVC: BaseVC {
         getGames()
     }
     
-    @objc private func getGames() {
+    private func getGames() {
         favoriteGameListViewModel.fetchGames { isSuccess, errorMessage in
             if !isSuccess {
                 guard let errorMessage = errorMessage else { return }
