@@ -35,4 +35,8 @@ enum APIURLs {
     static func topRatedGamesOf2022() -> String {
         GameEndPoint.BASE_URL.rawValue + GameEndPoint.API_URL.rawValue + "?dates=2022-01-01,2022-12-31&ordering=-rating&" + GameEndPoint.API_KEY.rawValue
     }
+    
+    static func mostAnticipatedUpcomingGamesOf2022() -> String {
+        GameEndPoint.BASE_URL.rawValue + GameEndPoint.API_URL.rawValue + "?dates=2022-01-01,2022-12-31&ordering=-added&" + GameEndPoint.API_KEY.rawValue
+    }
 }

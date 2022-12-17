@@ -19,18 +19,70 @@ final class GameListVC: BaseVC {
         configureSearchBar()
         indicator.startAnimating()
         gameListViewModel.delegate = self
-        gameListViewModel.fetchGames(isPagination: false) { errorMessage in
-            guard let errorMessage = errorMessage else { return }
-            print("errorMessage = \(errorMessage)")
+        fetchGames()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(getAllGames), name: NSNotification.Name(rawValue: "getAllGames"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchUpcomingGames), name: NSNotification.Name(rawValue: "upcomingGames"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchTopRatedGames), name: NSNotification.Name(rawValue: "fetchTopRatedGames"), object: nil)
+    }
+    
+    private func fetchGames() {
+        gameListViewModel.fetchGames(isPagination: false) { isSuccess, errorMessage in
+            if isSuccess {
+            } else {
+                guard let errorMessage = errorMessage else { return }
+                print("errorMessage = \(errorMessage)")
+            }
         }
     }
     
-    @IBAction func gamesOrderButtonPressed(_ sender: Any) {
+    @objc func getAllGames() {
+        self.dismiss(animated: true, completion: nil)
         let blurEffect = UIBlurEffect(style: .light)
         let blurVisualEffectView = UIVisualEffectView(effect: blurEffect)
         blurVisualEffectView.frame = view.bounds
         blurVisualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        self.gameTableView.addSubview(blurVisualEffectView)
+        indicator.startAnimating()
+        gameListViewModel.fetchGames(isPagination: false) { isSuccess, errorMessage in
+            if isSuccess {
+                blurVisualEffectView.removeFromSuperview()
+            } else {
+                guard let errorMessage = errorMessage else { return }
+                print("errorMessage = \(errorMessage)")
+            }
+        }
+    }
+
+    @objc func fetchUpcomingGames() {
+        self.dismiss(animated: true, completion: nil)
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurVisualEffectView = UIVisualEffectView(effect: blurEffect)
+        blurVisualEffectView.frame = view.bounds
+        blurVisualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        self.gameTableView.addSubview(blurVisualEffectView)
+        indicator.startAnimating()
+        gameListViewModel.fetchMostAnticipatedUpcomingGamesOf2022(isPagination: false) { isSuccess, errorMessage in
+            if isSuccess {
+                blurVisualEffectView.removeFromSuperview()
+            } else {
+                guard let errorMessage = errorMessage else { return }
+                print("errorMessage = \(errorMessage)")
+            }
+        }
+    }
+    
+    @objc func fetchTopRatedGames() {
+        self.dismiss(animated: true, completion: nil)
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurVisualEffectView = UIVisualEffectView(effect: blurEffect)
+        blurVisualEffectView.frame = view.bounds
+        blurVisualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
         self.gameTableView.addSubview(blurVisualEffectView)
         indicator.startAnimating()
         gameListViewModel.fetchTopRatedGamesOf2022(isPagination: false) { isSuccess, errorMessage in
@@ -39,10 +91,13 @@ final class GameListVC: BaseVC {
             } else {
                 guard let errorMessage = errorMessage else { return }
                 print("errorMessage = \(errorMessage)")
-                self.indicator.stopAnimating()
             }
         }
-        
+    }
+    
+    @IBAction func gamesOrderButtonPressed(_ sender: Any) {
+        let gameFilterVC = storyboard?.instantiateViewController(withIdentifier: "GameFilterVC") as! GameFilterVC
+        self.present(gameFilterVC, animated: true)        
     }
     
     private func configureGameTableView() {
@@ -93,10 +148,13 @@ extension GameListVC: UIScrollViewDelegate {
         let contentHeight = scrollView.contentSize.height
         if offsetY > contentHeight - scrollView.frame.size.height {
             gameTableView.tableFooterView = createSpinnerFooter()
-            gameListViewModel.fetchGames(isPagination: true) { errorMessage in
-                self.gameTableView.tableFooterView = nil
-                guard let errorMessage = errorMessage else { return }
-                print("errorMessage = \(errorMessage)")
+            gameListViewModel.fetchGames(isPagination: true) { isSuccess, errorMessage in
+                if isSuccess {
+                    self.gameTableView.tableFooterView = nil
+                } else {
+                    guard let errorMessage = errorMessage else { return }
+                    print("errorMessage = \(errorMessage)")
+                }
             }
         }
     }

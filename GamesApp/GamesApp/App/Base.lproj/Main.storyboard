@@ -234,7 +234,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="gXO-8D-MHc">
                         <barButtonItem key="rightBarButtonItem" title="Order" id="CnA-Yw-nms">
-                            <imageReference key="image" image="list.dash" catalog="system" symbolScale="large"/>
+                            <imageReference key="image" image="chevron.down.circle.fill" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="gamesOrderButtonPressed:" destination="cic-k6-tTj" id="AEw-P7-pXB"/>
                             </connections>
@@ -247,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNr-B4-W1W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="977.86259541984725" y="110.56338028169014"/>
+            <point key="canvasLocation" x="973.86609071274302" y="106.54205607476635"/>
         </scene>
         <!--Game DetailVC-->
         <scene sceneID="WgT-0x-nBY">
@@ -512,6 +513,181 @@
             </objects>
             <point key="canvasLocation" x="-238.6046511627907" y="980.47210300429185"/>
         </scene>
+        <!--Game FilterVC-->
+        <scene sceneID="oJK-7l-Qts">
+            <objects>
+                <viewController storyboardIdentifier="GameFilterVC" id="h00-aZ-d9k" customClass="GameFilterVC" customModule="GamesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q8U-F0-xYF">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Filter" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvf-1I-6GW">
+                                <rect key="frame" x="16" y="91" width="398" height="26.333333333333329"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="qIA-VX-ox7">
+                                <rect key="frame" x="16" y="133.33333333333334" width="398" height="34.333333333333343"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genel Oyunlar Listesi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpM-jJ-J35">
+                                        <rect key="frame" x="0.0" y="0.0" width="161" height="34.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rub-QF-qhk">
+                                        <rect key="frame" x="337.66666666666669" y="0.0" width="60.333333333333314" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="gamecontroller.fill" catalog="system">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="getAllGamesFilterButtonPressed:" destination="h00-aZ-d9k" eventType="touchUpInside" id="ZUn-fJ-Qf7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="oFp-3e-ngQ">
+                                <rect key="frame" x="16" y="183.66666666666666" width="398" height="34.333333333333343"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022'nin En Çok Beklenen Oyunlar Listesi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4La-xw-gFb">
+                                        <rect key="frame" x="0.0" y="0.0" width="316.33333333333331" height="34.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oz5-Hf-eD4">
+                                        <rect key="frame" x="347" y="0.0" width="51" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="list.star" catalog="system" symbolScale="large"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="upcomingGamesFilterButtonPressed:" destination="h00-aZ-d9k" eventType="touchUpInside" id="rsF-XS-Shv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="pwZ-VN-Zma">
+                                <rect key="frame" x="16" y="234" width="398" height="34.333333333333314"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022'nin En Çok Oy Alan Oyunlar Listesi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kh0-Lt-OBe">
+                                        <rect key="frame" x="0.0" y="0.0" width="305.33333333333331" height="34.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZp-v6-vFa">
+                                        <rect key="frame" x="346" y="0.0" width="52" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="star.square.on.square.fill" catalog="system" symbolScale="large"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="topRatedGamesFilterButtonPressed:" destination="h00-aZ-d9k" eventType="touchUpInside" id="yoM-sj-cgS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="I6w-CH-wrs"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qIA-VX-ox7" firstAttribute="top" secondItem="Lvf-1I-6GW" secondAttribute="bottom" constant="16" id="2qB-vR-4mL"/>
+                            <constraint firstItem="I6w-CH-wrs" firstAttribute="trailing" secondItem="oFp-3e-ngQ" secondAttribute="trailing" constant="16" id="8iv-MY-HdD"/>
+                            <constraint firstItem="Lvf-1I-6GW" firstAttribute="leading" secondItem="I6w-CH-wrs" secondAttribute="leading" constant="64" id="Bld-VH-7Wc"/>
+                            <constraint firstItem="oFp-3e-ngQ" firstAttribute="top" secondItem="qIA-VX-ox7" secondAttribute="bottom" constant="16" id="MJl-6I-QKL"/>
+                            <constraint firstItem="I6w-CH-wrs" firstAttribute="trailing" secondItem="oFp-3e-ngQ" secondAttribute="trailing" constant="64" id="RdJ-r2-8Pk"/>
+                            <constraint firstItem="qIA-VX-ox7" firstAttribute="leading" secondItem="I6w-CH-wrs" secondAttribute="leading" constant="16" id="Tif-1H-Rp9"/>
+                            <constraint firstItem="oFp-3e-ngQ" firstAttribute="leading" secondItem="I6w-CH-wrs" secondAttribute="leading" constant="64" id="Ukg-4Z-S5R"/>
+                            <constraint firstItem="qIA-VX-ox7" firstAttribute="top" secondItem="Lvf-1I-6GW" secondAttribute="bottom" constant="16" id="blP-MM-rO1"/>
+                            <constraint firstItem="Lvf-1I-6GW" firstAttribute="leading" secondItem="I6w-CH-wrs" secondAttribute="leading" constant="16" id="dht-g5-pov"/>
+                            <constraint firstItem="I6w-CH-wrs" firstAttribute="trailing" secondItem="pwZ-VN-Zma" secondAttribute="trailing" constant="16" id="e72-Fu-uoV"/>
+                            <constraint firstItem="pwZ-VN-Zma" firstAttribute="leading" secondItem="I6w-CH-wrs" secondAttribute="leading" constant="16" id="fp4-sH-DkG"/>
+                            <constraint firstItem="I6w-CH-wrs" firstAttribute="trailing" secondItem="pwZ-VN-Zma" secondAttribute="trailing" constant="64" id="gpy-PC-8fg"/>
+                            <constraint firstItem="oFp-3e-ngQ" firstAttribute="leading" secondItem="I6w-CH-wrs" secondAttribute="leading" constant="16" id="kRP-8p-rCs"/>
+                            <constraint firstItem="pwZ-VN-Zma" firstAttribute="top" secondItem="oFp-3e-ngQ" secondAttribute="bottom" constant="16" id="lDd-uf-NeO"/>
+                            <constraint firstItem="I6w-CH-wrs" firstAttribute="trailing" secondItem="qIA-VX-ox7" secondAttribute="trailing" constant="64" id="lWU-dn-fCC"/>
+                            <constraint firstItem="pwZ-VN-Zma" firstAttribute="top" secondItem="oFp-3e-ngQ" secondAttribute="bottom" constant="16" id="m4Q-bH-O23"/>
+                            <constraint firstItem="qIA-VX-ox7" firstAttribute="leading" secondItem="I6w-CH-wrs" secondAttribute="leading" constant="64" id="pNv-ZW-o3y"/>
+                            <constraint firstItem="I6w-CH-wrs" firstAttribute="trailing" secondItem="Lvf-1I-6GW" secondAttribute="trailing" constant="16" id="sdn-lu-krx"/>
+                            <constraint firstItem="Lvf-1I-6GW" firstAttribute="top" secondItem="I6w-CH-wrs" secondAttribute="top" constant="32" id="sf7-VJ-PIl"/>
+                            <constraint firstItem="pwZ-VN-Zma" firstAttribute="leading" secondItem="I6w-CH-wrs" secondAttribute="leading" constant="64" id="vvL-TL-koe"/>
+                            <constraint firstItem="I6w-CH-wrs" firstAttribute="trailing" secondItem="Lvf-1I-6GW" secondAttribute="trailing" constant="64" id="y3n-yS-RMP"/>
+                            <constraint firstItem="oFp-3e-ngQ" firstAttribute="top" secondItem="qIA-VX-ox7" secondAttribute="bottom" constant="16" id="yhL-TY-tVg"/>
+                            <constraint firstItem="Lvf-1I-6GW" firstAttribute="top" secondItem="I6w-CH-wrs" secondAttribute="top" id="zbj-Nq-CmC"/>
+                            <constraint firstItem="I6w-CH-wrs" firstAttribute="trailing" secondItem="qIA-VX-ox7" secondAttribute="trailing" constant="16" id="zdE-Ca-sD6"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="8iv-MY-HdD"/>
+                                <exclude reference="RdJ-r2-8Pk"/>
+                                <exclude reference="e72-Fu-uoV"/>
+                                <exclude reference="gpy-PC-8fg"/>
+                                <exclude reference="lWU-dn-fCC"/>
+                                <exclude reference="sdn-lu-krx"/>
+                                <exclude reference="y3n-yS-RMP"/>
+                                <exclude reference="zdE-Ca-sD6"/>
+                                <exclude reference="Bld-VH-7Wc"/>
+                                <exclude reference="dht-g5-pov"/>
+                                <exclude reference="sf7-VJ-PIl"/>
+                                <exclude reference="zbj-Nq-CmC"/>
+                                <exclude reference="2qB-vR-4mL"/>
+                                <exclude reference="Tif-1H-Rp9"/>
+                                <exclude reference="blP-MM-rO1"/>
+                                <exclude reference="pNv-ZW-o3y"/>
+                                <exclude reference="MJl-6I-QKL"/>
+                                <exclude reference="Ukg-4Z-S5R"/>
+                                <exclude reference="kRP-8p-rCs"/>
+                                <exclude reference="yhL-TY-tVg"/>
+                                <exclude reference="fp4-sH-DkG"/>
+                                <exclude reference="lDd-uf-NeO"/>
+                                <exclude reference="m4Q-bH-O23"/>
+                                <exclude reference="vvL-TL-koe"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="RdJ-r2-8Pk"/>
+                                <include reference="gpy-PC-8fg"/>
+                                <include reference="lWU-dn-fCC"/>
+                                <include reference="y3n-yS-RMP"/>
+                                <include reference="Bld-VH-7Wc"/>
+                                <include reference="zbj-Nq-CmC"/>
+                                <include reference="blP-MM-rO1"/>
+                                <include reference="pNv-ZW-o3y"/>
+                                <include reference="MJl-6I-QKL"/>
+                                <include reference="Ukg-4Z-S5R"/>
+                                <include reference="m4Q-bH-O23"/>
+                                <include reference="vvL-TL-koe"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <include reference="8iv-MY-HdD"/>
+                                <include reference="e72-Fu-uoV"/>
+                                <include reference="sdn-lu-krx"/>
+                                <include reference="zdE-Ca-sD6"/>
+                                <include reference="dht-g5-pov"/>
+                                <include reference="sf7-VJ-PIl"/>
+                                <include reference="2qB-vR-4mL"/>
+                                <include reference="Tif-1H-Rp9"/>
+                                <include reference="kRP-8p-rCs"/>
+                                <include reference="yhL-TY-tVg"/>
+                                <include reference="fp4-sH-DkG"/>
+                                <include reference="lDd-uf-NeO"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vbu-Fa-xC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="903" y="979"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="7i5-Ng-WFL">
             <objects>
@@ -535,12 +711,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.down.circle.fill" catalog="system" width="128" height="123"/>
         <image name="gamecontroller" catalog="system" width="128" height="79"/>
+        <image name="gamecontroller.fill" catalog="system" width="128" height="79"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
-        <image name="list.dash" catalog="system" width="128" height="85"/>
+        <image name="list.star" catalog="system" width="128" height="95"/>
         <image name="network" catalog="system" width="128" height="123"/>
         <image name="note.text" catalog="system" width="128" height="107"/>
+        <image name="star.square.on.square.fill" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

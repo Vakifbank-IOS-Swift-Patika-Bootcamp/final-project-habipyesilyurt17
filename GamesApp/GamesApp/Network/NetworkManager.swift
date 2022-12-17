@@ -10,7 +10,7 @@ import Foundation
 final class NetworkManager {
     static let shared = NetworkManager()
     var isPaginating: Bool = false
-
+    
     private func request<T: Decodable>(type: T.Type, url: String, method: HTTPMethods, completion: @escaping ((Result<T, ErrorTypes>)->())) {
         let session = URLSession.shared
         if let url  = URL(string: url) {
@@ -101,6 +101,28 @@ final class NetworkManager {
                 completion(nil, nil, error.rawValue)
             }
         }
+    }
+    
+    func getMostAnticipatedUpcomingGamesOf2022(isPagination: Bool, nextPage: String?, completion: @escaping ([Game]?, String?, String?)->()) {
+        let urlString: String
+        if isPagination {
+            isPaginating = true
+            guard let nextPage = nextPage else { return }
+            urlString = nextPage
+        } else {
+            urlString = APIURLs.mostAnticipatedUpcomingGamesOf2022()
+        }
         
+        request(type: GameModel.self, url: urlString, method: .get) { response in
+            switch response {
+            case .success(let games):
+                completion(games.results, games.next, nil)
+                if isPagination {
+                    self.isPaginating = false
+                }
+            case .failure(let error):
+                completion(nil, nil, error.rawValue)
+            }
+        }
     }
 }

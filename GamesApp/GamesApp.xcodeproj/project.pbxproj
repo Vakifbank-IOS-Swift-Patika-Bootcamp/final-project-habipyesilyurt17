@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F1278B9294D1A6A0017057E /* GameFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1278B8294D1A6A0017057E /* GameFilterVC.swift */; };
 		9F167F2A294491C600AB313A /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F167F29294491C600AB313A /* NetworkHelper.swift */; };
 		9F167F2C294497C500AB313A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F167F2B294497C500AB313A /* NetworkManager.swift */; };
 		9F167F2E29449C7100AB313A /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F167F2D29449C7100AB313A /* GameModel.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F1278B8294D1A6A0017057E /* GameFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFilterVC.swift; sourceTree = "<group>"; };
 		9F167F29294491C600AB313A /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		9F167F2B294497C500AB313A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9F167F2D29449C7100AB313A /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -154,8 +156,8 @@
 		9F167F25294466B300AB313A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9F7A5C1C294B5FD40011E011 /* NoteList */,
 				9FB10359294596F4006257B2 /* BaseVC.swift */,
+				9F7A5C1C294B5FD40011E011 /* NoteList */,
 				9F4CECCF294A03850095143F /* FavoriteGames */,
 				9FBF627829490EBC005FEF83 /* GameDetail */,
 				9F64A3882945170100266F5B /* GameList */,
@@ -260,6 +262,7 @@
 			children = (
 				9F64A3892945171500266F5B /* Cell */,
 				9F64A38A2945174200266F5B /* GameListVC.swift */,
+				9F1278B8294D1A6A0017057E /* GameFilterVC.swift */,
 			);
 			path = GameList;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				9F7A5C24294B60D80011E011 /* NotesTableViewCell.swift in Sources */,
 				9F167F2A294491C600AB313A /* NetworkHelper.swift in Sources */,
 				9F7A5C27294B87C10011E011 /* NotesManager.swift in Sources */,
+				9F1278B9294D1A6A0017057E /* GameFilterVC.swift in Sources */,
 				9F4CECD2294A03D30095143F /* FavoriteGameListVC.swift in Sources */,
 				9F2AC7242943BEC900D75353 /* AppDelegate.swift in Sources */,
 				9F64A38B2945174200266F5B /* GameListVC.swift in Sources */,
