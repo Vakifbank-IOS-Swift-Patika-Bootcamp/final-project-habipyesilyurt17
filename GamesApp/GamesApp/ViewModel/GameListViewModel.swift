@@ -22,7 +22,11 @@ protocol GameListViewModelDelegate: AnyObject {
     func gamesLoaded()
 }
 
-final class GameListViewModel: GameListViewModelProtocol {
+protocol NotificationManagerProtocol {
+    func setNotification(_ duration: Int, of type: LocalNotificationDurationType, repeats: Bool, title: String, body: String)
+}
+
+final class GameListViewModel: GameListViewModelProtocol, NotificationManagerProtocol {
     weak var delegate: GameListViewModelDelegate?
     private var games: [Game]?
     private var filteredGames: [Game]?
@@ -120,5 +124,9 @@ final class GameListViewModel: GameListViewModelProtocol {
                 }
             }
         }
+    }
+    
+    func setNotification(_ duration: Int, of type: LocalNotificationDurationType, repeats: Bool, title: String, body: String) {
+        LocalNotificationManager.shared.setNotification(duration, of: type, repeats: repeats, title: title, body: body)
     }
 }

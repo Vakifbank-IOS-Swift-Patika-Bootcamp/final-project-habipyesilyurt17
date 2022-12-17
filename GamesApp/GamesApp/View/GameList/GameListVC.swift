@@ -11,7 +11,7 @@ final class GameListVC: BaseVC {
     @IBOutlet weak var gameSearchBar: UISearchBar!
     @IBOutlet weak var gameTableView: UITableView!
     
-    private var gameListViewModel: GameListViewModelProtocol = GameListViewModel()
+    private var gameListViewModel = GameListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,7 @@ final class GameListVC: BaseVC {
         indicator.startAnimating()
         gameListViewModel.delegate = self
         fetchGames()
+        gameListViewModel.setNotification(5, of: .seconds, repeats: false, title: "Remember me!", body: "This is local notification")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,6 +120,12 @@ extension GameListVC: GameListViewModelDelegate {
         gameTableView.reloadData()
     }
 }
+
+//extension GameListVC: NotificationDelegate {
+//    func setNotification(_ duration: Int, of type: LocalNotificationDurationType, repeats: Bool, title: String, body: String) {
+//        LocalNotificationManager.shared.setNotification(duration, of: type, repeats: repeats, title: title, body: body)
+//    }
+//}
 
 extension GameListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

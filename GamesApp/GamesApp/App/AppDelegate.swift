@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwiftAlertView
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        setUpNotifications(on: application)
         return true
     }
 
@@ -79,3 +81,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+extension AppDelegate {
+    func setUpNotifications(on application: UIApplication) {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.delegate = self
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if let error = error {
+                SwiftAlertView.show(title: "Error", message: "Failed to request autorization for notification center: \(error.localizedDescription)", buttonTitles: ["Ok"]).onButtonClicked { _, _ in
+                }
+                return
+            }
+            guard granted else {
+                SwiftAlertView.show(title: "Error", message: "Failed to request autorization for notification center: not granted", buttonTitles: ["Ok"]).onButtonClicked { _, _ in
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
+        }
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        defer { completionHandler() }
+        guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return }
+        let content = response.notification.request.content
+        let message = content.body
+        SwiftAlertView.show(title: "Notification Detail", message: message, buttonTitles: ["Ok"]).onButtonClicked { _, _ in
+        }
+        completionHandler()
+    }
+}
