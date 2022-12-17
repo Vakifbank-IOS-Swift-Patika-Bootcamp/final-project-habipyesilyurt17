@@ -46,26 +46,8 @@ final class NetworkManager {
     }
     
     func getAllGames(isPagination: Bool, nextPage: String?, completion: @escaping ([Game]?, String?, String?)->()) {
-        let urlString: String
-        if isPagination {
-            isPaginating = true
-            guard let nextPage = nextPage else { return }
-            urlString = nextPage
-        } else {
-            urlString = APIURLs.allGames()
-        }
-        
-        request(type: GameModel.self, url: urlString, method: .get) { response in
-            switch response {
-            case .success(let games):
-                completion(games.results, games.next, nil)
-                if isPagination {
-                    self.isPaginating = false
-                }
-            case .failure(let error):
-                completion(nil, nil, error.rawValue)
-            }
-        }
+        let apiUrl = checkUrlWithPagination(isPagination: isPagination, nextPage: nextPage, apiUrl: APIURLs.allGames())
+        throwRequest(isPagination: isPagination, apiURL: apiUrl, completion: completion)
     }
     
     func getGameDetail(gameId: Int, completion: @escaping (GameDetailModel?, String?) -> Void) {
@@ -81,39 +63,29 @@ final class NetworkManager {
     }
     
     func getTopRatedGamesOf2022(isPagination: Bool, nextPage: String?, completion: @escaping ([Game]?, String?, String?)->()) {
-        let urlString: String
-        if isPagination {
-            isPaginating = true
-            guard let nextPage = nextPage else { return }
-            urlString = nextPage
-        } else {
-            urlString = APIURLs.topRatedGamesOf2022()
-        }
-        
-        request(type: GameModel.self, url: urlString, method: .get) { response in
-            switch response {
-            case .success(let games):
-                completion(games.results, games.next, nil)
-                if isPagination {
-                    self.isPaginating = false
-                }
-            case .failure(let error):
-                completion(nil, nil, error.rawValue)
-            }
-        }
+        let apiUrl = checkUrlWithPagination(isPagination: isPagination, nextPage: nextPage, apiUrl: APIURLs.topRatedGamesOf2022())
+        throwRequest(isPagination: isPagination, apiURL: apiUrl, completion: completion)
     }
     
     func getMostAnticipatedUpcomingGamesOf2022(isPagination: Bool, nextPage: String?, completion: @escaping ([Game]?, String?, String?)->()) {
+        let apiUrl = checkUrlWithPagination(isPagination: isPagination, nextPage: nextPage, apiUrl: APIURLs.mostAnticipatedUpcomingGamesOf2022())
+        throwRequest(isPagination: isPagination, apiURL: apiUrl, completion: completion)
+    }
+    
+    private func checkUrlWithPagination(isPagination: Bool, nextPage: String?, apiUrl: String) -> String {
         let urlString: String
         if isPagination {
             isPaginating = true
-            guard let nextPage = nextPage else { return }
+            guard let nextPage = nextPage else { return ""}
             urlString = nextPage
         } else {
-            urlString = APIURLs.mostAnticipatedUpcomingGamesOf2022()
+            urlString = apiUrl
         }
-        
-        request(type: GameModel.self, url: urlString, method: .get) { response in
+        return urlString
+    }
+    
+    private func throwRequest(isPagination: Bool, apiURL: String, completion: @escaping ([Game]?, String?, String?)->()) {
+        request(type: GameModel.self, url: apiURL, method: .get) { response in
             switch response {
             case .success(let games):
                 completion(games.results, games.next, nil)
