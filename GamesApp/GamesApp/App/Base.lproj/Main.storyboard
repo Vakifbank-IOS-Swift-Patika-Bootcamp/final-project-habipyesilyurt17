@@ -147,7 +147,7 @@
             </objects>
             <point key="canvasLocation" x="-3102.3605150214594" y="979.53488372093022"/>
         </scene>
-        <!--Notes ListVC-->
+        <!--Notes-->
         <scene sceneID="tHS-6s-H3y">
             <objects>
                 <viewController storyboardIdentifier="NotesListVC" id="YQe-s2-8B2" customClass="NotesListVC" customModule="GamesApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -169,7 +169,7 @@
                             <constraint firstItem="lwA-XA-d8b" firstAttribute="bottom" secondItem="cSM-HI-emC" secondAttribute="bottom" id="y4o-gq-PdW"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" id="AXO-zO-R5t">
+                    <tabBarItem key="tabBarItem" title="Notes" id="AXO-zO-R5t">
                         <imageReference key="image" image="note.text" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <connections>
@@ -470,11 +470,11 @@
             </objects>
             <point key="canvasLocation" x="2549" y="109"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Games-->
         <scene sceneID="xw6-nz-950">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DEP-jS-IbE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="vhw-w9-LUQ">
+                    <tabBarItem key="tabBarItem" title="Games" id="vhw-w9-LUQ">
                         <imageReference key="image" image="gamecontroller" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -697,11 +697,11 @@
             </objects>
             <point key="canvasLocation" x="903" y="979"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Favorites-->
         <scene sceneID="7i5-Ng-WFL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vpJ-gB-3jb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="Xdw-Kq-i0h">
+                    <tabBarItem key="tabBarItem" title="Favorites" id="Xdw-Kq-i0h">
                         <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large" variableValue="1"/>
                     </tabBarItem>
                     <toolbarItems/>
