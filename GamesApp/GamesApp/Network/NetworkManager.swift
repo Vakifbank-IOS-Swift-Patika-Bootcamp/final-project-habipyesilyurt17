@@ -45,7 +45,7 @@ final class NetworkManager {
         }
     }
     
-    func getAllGames(isPagination: Bool, nextPage: String?, completion: @escaping ([Game]?, String?, String?)->()) {
+    func getAllGames(isPagination: Bool, nextPage: String?, completion: @escaping ([Game]?, String?, ErrorTypes?)->()) {
         let apiUrl = checkUrlWithPagination(isPagination: isPagination, nextPage: nextPage, apiUrl: APIURLs.allGames())
         throwRequest(isPagination: isPagination, apiURL: apiUrl, completion: completion)
     }
@@ -62,12 +62,12 @@ final class NetworkManager {
         }
     }
     
-    func getTopRatedGamesOf2022(isPagination: Bool, nextPage: String?, completion: @escaping ([Game]?, String?, String?)->()) {
+    func getTopRatedGamesOf2022(isPagination: Bool, nextPage: String?, completion: @escaping ([Game]?, String?, ErrorTypes?)->()) {
         let apiUrl = checkUrlWithPagination(isPagination: isPagination, nextPage: nextPage, apiUrl: APIURLs.topRatedGamesOf2022())
         throwRequest(isPagination: isPagination, apiURL: apiUrl, completion: completion)
     }
     
-    func getMostAnticipatedUpcomingGamesOf2022(isPagination: Bool, nextPage: String?, completion: @escaping ([Game]?, String?, String?)->()) {
+    func getMostAnticipatedUpcomingGamesOf2022(isPagination: Bool, nextPage: String?, completion: @escaping ([Game]?, String?, ErrorTypes?)->()) {
         let apiUrl = checkUrlWithPagination(isPagination: isPagination, nextPage: nextPage, apiUrl: APIURLs.mostAnticipatedUpcomingGamesOf2022())
         throwRequest(isPagination: isPagination, apiURL: apiUrl, completion: completion)
     }
@@ -84,7 +84,7 @@ final class NetworkManager {
         return urlString
     }
     
-    private func throwRequest(isPagination: Bool, apiURL: String, completion: @escaping ([Game]?, String?, String?)->()) {
+    private func throwRequest(isPagination: Bool, apiURL: String, completion: @escaping ([Game]?, String?, ErrorTypes?)->()) {
         request(type: GameModel.self, url: apiURL, method: .get) { response in
             switch response {
             case .success(let games):
@@ -93,7 +93,7 @@ final class NetworkManager {
                     self.isPaginating = false
                 }
             case .failure(let error):
-                completion(nil, nil, error.rawValue)
+                completion(nil, nil, error)
             }
         }
     }

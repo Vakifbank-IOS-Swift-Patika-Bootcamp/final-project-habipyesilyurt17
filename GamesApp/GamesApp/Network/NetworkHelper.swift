@@ -15,6 +15,7 @@ enum ErrorTypes: String, Error {
     case invalidData  = "Invalid data"
     case invalidURL   = "Invalid url"
     case generalError = "An error happened"
+    case fetchError   = "Data couldn't be fetched"
 }
 
 enum GameEndPoint: String {

@@ -159,10 +159,10 @@
 			isa = PBXGroup;
 			children = (
 				9FB10359294596F4006257B2 /* BaseVC.swift */,
-				9F7A5C1C294B5FD40011E011 /* NoteList */,
-				9F4CECCF294A03850095143F /* FavoriteGames */,
-				9FBF627829490EBC005FEF83 /* GameDetail */,
 				9F64A3882945170100266F5B /* GameList */,
+				9FBF627829490EBC005FEF83 /* GameDetail */,
+				9F4CECCF294A03850095143F /* FavoriteGames */,
+				9F7A5C1C294B5FD40011E011 /* NoteList */,
 			);
 			path = View;
 			sourceTree = "<group>";
