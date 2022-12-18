@@ -14,31 +14,36 @@ final class GameDetailVC: BaseVC {
     @IBOutlet weak var gameReleased: UILabel!
     @IBOutlet weak var gameDescription: UITextView!
     @IBOutlet weak var favoriteButton: UIButton!
-
+    @IBOutlet weak var blurView: UIView!
+    
     var gameId: Int?
     private var gameDetailViewModel: GameDetailViewModelProtocol = GameDetailViewModel()
+    private var favoriteGameListViewModel = FavoriteGameListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         gameDetailViewModel.delegate = self
-
-        let blurEffect = UIBlurEffect(style: .light)
-        let blurVisualEffectView = UIVisualEffectView(effect: blurEffect)
-        blurVisualEffectView.frame = view.bounds
-        blurVisualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(blurVisualEffectView)
+        fetchGameDetail()
+    }
+    
+    private func fetchGameDetail() {
+        blurView.alpha = 1
         indicator.startAnimating()
+        
         guard let id = gameId else { return }
-        gameDetailViewModel.getGameDetail(gameId: id) { isSuccess, errorMessage in
+        gameDetailViewModel.getGameDetail(gameId: id) { [weak self] isSuccess, errorMessage in
+            guard let self = self else { return }
             if isSuccess {
-                blurVisualEffectView.removeFromSuperview()
+                self.blurView.alpha = 0
             } else {
                 guard let errorMessage = errorMessage else { return }
-                print("errorMessage = \(errorMessage)")
+                self.showErrorAlert(message: errorMessage.rawValue) {
+                    self.indicator.stopAnimating()
+                }
             }
         }
     }
-    
+
     @IBAction func websiteButtonPressed(_ sender: Any) {
         guard let webViewVC = storyboard?.instantiateViewController(withIdentifier: "WebViewVC") as? WebViewVC else { return }
         webViewVC.urlString = gameDetailViewModel.getGameWebsite()
@@ -49,23 +54,29 @@ final class GameDetailVC: BaseVC {
     @IBAction func favoriteGameButtonPressed(_ sender: Any) {
         if gameDetailViewModel.gameIsFavorite() {
             guard let gameId = gameId else { return }
-            FavoriteGamesManager.shared.deleteData(id: gameId) { [weak self] isSuccess, deleteError in
+            favoriteGameListViewModel.deleteGame(gameId: gameId) { [weak self] isSuccess, deleteError in
                 guard let self = self else { return }
                 if isSuccess {
                     self.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
                     NotificationCenter.default.post(name: NSNotification.Name("deleteData"), object: nil)
                 } else {
-                    print("error: \(deleteError)")
+                    guard let deleteError = deleteError else { return }
+                    self.showErrorAlert(message: deleteError) {
+                        self.indicator.stopAnimating()
+                    }
                 }
             }
         } else {
             let favoriteGame = createNewFavoriteGame()
-            FavoriteGamesManager.shared.saveData(data: favoriteGame) { [weak self] isSuccess, saveError in
+            favoriteGameListViewModel.saveGame(game: favoriteGame) { [weak self] isSuccess, saveError in
                 guard let self = self else { return }
                 if isSuccess {
                     self.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 } else {
-                    print("error: \(saveError)")
+                    guard let saveError = saveError else { return }
+                    self.showErrorAlert(message: saveError) {
+                        self.indicator.stopAnimating()
+                    }
                 }
             }
         }
@@ -91,7 +102,7 @@ extension GameDetailVC: GameDetailViewModelDelegate {
         indicator.stopAnimating()
         guard let url = gameDetailViewModel.getGameImageUrl() else { return }
         gameImage.kf.setImage(with: url)
-        gameTitle.text       = gameDetailViewModel.getGameTitle()
+        gameTitle.text = gameDetailViewModel.getGameTitle()
         gameRating.attributedText = configureLabelWithIcon(labelText: String(gameDetailViewModel.getGameRating()), icon: "star.fill")
         gameReleased.attributedText = configureLabelWithIcon(labelText: gameDetailViewModel.getGameReleased(), icon: "calendar")
         gameDescription.text = gameDetailViewModel.getGameDescription()

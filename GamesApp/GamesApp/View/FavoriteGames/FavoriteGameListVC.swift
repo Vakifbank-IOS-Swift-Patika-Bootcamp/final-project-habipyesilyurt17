@@ -24,10 +24,13 @@ final class FavoriteGameListVC: BaseVC {
     }
     
     private func getGames() {
+        indicator.startAnimating()
         favoriteGameListViewModel.fetchGames { isSuccess, errorMessage in
             if !isSuccess {
                 guard let errorMessage = errorMessage else { return }
-                print("errorMessage = \(errorMessage)")
+                self.showErrorAlert(message: errorMessage) {
+                    self.indicator.stopAnimating()
+                }
             }
         }
     }

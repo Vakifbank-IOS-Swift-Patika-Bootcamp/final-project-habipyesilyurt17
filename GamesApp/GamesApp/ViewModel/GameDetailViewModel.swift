@@ -9,7 +9,7 @@ import Foundation
 
 protocol GameDetailViewModelProtocol {
     var delegate: GameDetailViewModelDelegate? { get set }
-    func getGameDetail(gameId: Int, completion: @escaping (_ isSuccess: Bool, String?) -> ())
+    func getGameDetail(gameId: Int, completion: @escaping (_ isSuccess: Bool, ErrorTypes?) -> ())
     func getGameImageUrl() -> URL?
     func getGameTitle() -> String
     func getGameRating() -> Double
@@ -27,10 +27,10 @@ final class GameDetailViewModel: GameDetailViewModelProtocol {
     weak var delegate: GameDetailViewModelDelegate?
     private var game: GameDetailModel?
 
-    func getGameDetail(gameId: Int, completion: @escaping (Bool, String?) -> ()) {
+    func getGameDetail(gameId: Int, completion: @escaping (Bool, ErrorTypes?) -> ()) {
         NetworkManager.shared.getGameDetail(gameId: gameId) { [weak self] gameDetail, error in
             if error != nil {
-                completion(false, error)
+                completion(false, .fetchError)
             } else {
                 guard let self = self else { return }
                 self.game = gameDetail
@@ -50,7 +50,7 @@ final class GameDetailViewModel: GameDetailViewModelProtocol {
             }
         }
     }
-
+    
     func getGameImageUrl() -> URL? {
         URL(string: game?.backgroundImage ?? "")
     }

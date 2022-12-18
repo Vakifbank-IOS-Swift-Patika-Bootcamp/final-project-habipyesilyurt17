@@ -10,6 +10,8 @@ import Foundation
 protocol FavoriteGameListViewModelProtocol {
     var delegate: GameListViewModelDelegate? { get set }
     func fetchGames(completion: @escaping (_ isSuccess: Bool, String?) -> ())
+    func saveGame(game: FavoriteGames, completion: @escaping (Bool, String?) -> ())
+    func deleteGame(gameId: Int, completion: @escaping (Bool, String?) -> ())
     func getGameCount() -> Int
     func getGame(at index: Int) -> FavoriteGames?
 }
@@ -32,6 +34,30 @@ final class FavoriteGameListViewModel: FavoriteGameListViewModelProtocol {
                 }
                 self.delegate?.gamesLoaded()
                 completion(false, fetchError.rawValue)
+            }
+        }
+    }
+    
+    func saveGame(game: FavoriteGames, completion: @escaping (Bool, String?) -> ()) {
+        FavoriteGamesManager.shared.saveData(data: game) { [weak self] isSuccess, saveError in
+            guard let self = self else { return }
+            if isSuccess {
+                self.delegate?.gamesLoaded()
+                completion(true, nil)
+            } else {
+                completion(false, saveError.rawValue)
+            }
+        }
+    }
+    
+    func deleteGame(gameId: Int, completion: @escaping (Bool, String?) -> ()) {
+        FavoriteGamesManager.shared.deleteData(id: gameId) { [weak self] isSuccess, deleteError in
+            guard let self = self else { return }
+            if isSuccess {
+                self.delegate?.gamesLoaded()
+                completion(true, nil)
+            } else {
+                completion(false, deleteError.rawValue)
             }
         }
     }
