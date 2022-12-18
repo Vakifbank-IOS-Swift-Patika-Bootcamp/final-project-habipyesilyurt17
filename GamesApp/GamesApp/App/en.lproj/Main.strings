@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "Game:"; ObjectID = "0Bj-gY-PvK"; */
+"0Bj-gY-PvK.text" = "Game:";
+
+/* Class = "UILabel"; text = "2022'nin En Çok Beklenen Oyunlar Listesi"; ObjectID = "4La-xw-gFb"; */
+"4La-xw-gFb.text" = "2022'nin En Çok Beklenen Oyunlar Listesi";
+
+/* Class = "UITabBarItem"; title = "Notes"; ObjectID = "AXO-zO-R5t"; */
+"AXO-zO-R5t.title" = "Notes";
+
+/* Class = "UIBarButtonItem"; title = "Order"; ObjectID = "CnA-Yw-nms"; */
+"CnA-Yw-nms.title" = "Order";
+
+/* Class = "UILabel"; text = "Note:"; ObjectID = "Cwo-Cu-fnW"; */
+"Cwo-Cu-fnW.text" = "Note:";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "EPn-s3-0xb"; */
+"EPn-s3-0xb.text" = "-";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "GBs-8d-Wi1"; */
+"GBs-8d-Wi1.text" = "-";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Hfi-RC-pMl"; */
+"Hfi-RC-pMl.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "JoC-Gw-Bvk"; */
+"JoC-Gw-Bvk.text" = "-";
+
+/* Class = "UILabel"; text = "2022'nin En Çok Oy Alan Oyunlar Listesi"; ObjectID = "Kh0-Lt-OBe"; */
+"Kh0-Lt-OBe.text" = "2022'nin En Çok Oy Alan Oyunlar Listesi";
+
+/* Class = "UILabel"; text = "Select Filter"; ObjectID = "Lvf-1I-6GW"; */
+"Lvf-1I-6GW.text" = "Select Filter";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Oz5-Hf-eD4"; */
+"Oz5-Hf-eD4.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Favorites"; ObjectID = "Xdw-Kq-i0h"; */
+"Xdw-Kq-i0h.title" = "Favorites";
+
+/* Class = "UIButton"; configuration.title = "Save"; ObjectID = "eSq-wt-B9F"; */
+"eSq-wt-B9F.configuration.title" = "Save";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "eSq-wt-B9F"; */
+"eSq-wt-B9F.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Genel Oyunlar Listesi"; ObjectID = "lpM-jJ-J35"; */
+"lpM-jJ-J35.text" = "Genel Oyunlar Listesi";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "mRJ-T3-ife"; */
+"mRJ-T3-ife.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "p9m-Nf-ueC"; */
+"p9m-Nf-ueC.text" = "-";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "pZp-v6-vFa"; */
+"pZp-v6-vFa.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "rub-QF-qhk"; */
+"rub-QF-qhk.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Games"; ObjectID = "vhw-w9-LUQ"; */
+"vhw-w9-LUQ.title" = "Games";
+
+/* Class = "UITextView"; text = "-"; ObjectID = "yzi-9o-IwU"; */
+"yzi-9o-IwU.text" = "-";
