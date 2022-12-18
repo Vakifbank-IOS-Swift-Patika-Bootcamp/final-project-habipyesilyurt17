@@ -86,5 +86,4 @@ final class NoteListViewModel: NoteListViewModelProtocol {
     func getGames() -> [Game]? {
         games
     }
-        
 }

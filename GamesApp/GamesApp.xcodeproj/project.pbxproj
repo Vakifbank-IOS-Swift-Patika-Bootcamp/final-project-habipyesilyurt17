@@ -45,6 +45,7 @@
 		9FB1035A294596F4006257B2 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB10359294596F4006257B2 /* BaseVC.swift */; };
 		9FB1035D29459742006257B2 /* MaterialActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 9FB1035C29459742006257B2 /* MaterialActivityIndicator */; };
 		9FBF627A29490EE5005FEF83 /* GameDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF627929490EE5005FEF83 /* GameDetailVC.swift */; };
+		9FE9565B294F4B7600394B55 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9565A294F4B7600394B55 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		9FB1018C29492E0B00649CAF /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
 		9FB10359294596F4006257B2 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		9FBF627929490EE5005FEF83 /* GameDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailVC.swift; sourceTree = "<group>"; };
+		9FE9565A294F4B7600394B55 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				9F7A5C2E294BB3340011E011 /* Extensions.swift */,
+				9FE9565A294F4B7600394B55 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				9F1278B9294D1A6A0017057E /* GameFilterVC.swift in Sources */,
 				9F4CECD2294A03D30095143F /* FavoriteGameListVC.swift in Sources */,
 				9F2AC7242943BEC900D75353 /* AppDelegate.swift in Sources */,
+				9FE9565B294F4B7600394B55 /* Constants.swift in Sources */,
 				9F64A38B2945174200266F5B /* GameListVC.swift in Sources */,
 				9F7A5C29294B942B0011E011 /* NoteListViewModel.swift in Sources */,
 				9F64A38E294517EF00266F5B /* GameListTableViewCell.swift in Sources */,

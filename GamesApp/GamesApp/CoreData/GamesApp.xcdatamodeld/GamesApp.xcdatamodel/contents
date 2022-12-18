@@ -19,9 +19,6 @@
         </fetchedProperty>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="gameName"/>
-            </uniquenessConstraint>
-            <uniquenessConstraint>
                 <constraint value="note"/>
             </uniquenessConstraint>
         </uniquenessConstraints>

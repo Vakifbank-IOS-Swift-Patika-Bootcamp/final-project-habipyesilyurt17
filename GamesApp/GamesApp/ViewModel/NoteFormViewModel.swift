@@ -9,41 +9,34 @@ import Foundation
 
 protocol NoteFormViewModelProtocol {
     var delegate: NoteListViewModelDelegate? { get set }
-    func newOrEditForm(formType: String, gameText: String?, noteText: String?, games: [Game]?, selectedNote: Notes?, completion: @escaping (_ isSuccess: Bool, String?) -> ())
+    func newOrEditForm(formType: String, name: String, note: String, games: [Game]?, selectedNote: Notes?, completion: @escaping (_ isSuccess: Bool, String?) -> ())
 }
 
 final class NoteFormViewModel: NoteFormViewModelProtocol {
     weak var delegate: NoteListViewModelDelegate?
-
-    func newOrEditForm(formType: String, gameText: String?, noteText: String?, games: [Game]?, selectedNote: Notes?, completion: @escaping (Bool, String?) -> ()) {
+    
+    func newOrEditForm(formType: String, name: String, note: String, games: [Game]?, selectedNote: Notes?, completion: @escaping (Bool, String?) -> ()) {
         let contextNote = Notes(context: NotesManager.shared.context)
-        if let name = gameText {
-            contextNote.setValue(name, forKey: "gameName")
-        }
-        if let note = noteText {
-            contextNote.setValue(note, forKey: "note")
-        }
-        if contextNote.gameName != "" && contextNote.note != "" {
-            if formType == "Edit Form" {
-                editNote(contextNote: contextNote, choosenNote: selectedNote) { isSuccess, editError in
-                    if isSuccess {
-                        completion(true, nil)
-                    } else {
-                        completion(false, editError)
-                    }
-                }
-            } else {
-                guard let games = games else { return }
-                newNote(contextNote: contextNote, games: games) { isSuccess, createError in
-                    if isSuccess {
-                        completion(true, nil)
-                    } else {
-                        completion(false, createError)
-                    }
+        contextNote.setValue(name, forKey: "gameName")
+        contextNote.setValue(note, forKey: "note")
+        
+        if formType == "Edit Form" {
+            editNote(contextNote: contextNote, choosenNote: selectedNote) { isSuccess, editError in
+                if isSuccess {
+                    completion(true, nil)
+                } else {
+                    completion(false, editError)
                 }
             }
         } else {
-            completion(false, "Inputs can not be empty!")
+            guard let games = games else { return }
+            newNote(contextNote: contextNote, games: games) { isSuccess, createError in
+                if isSuccess {
+                    completion(true, nil)
+                } else {
+                    completion(false, createError)
+                }
+            }
         }
     }
     

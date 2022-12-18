@@ -28,6 +28,9 @@ final class NoteFormVC: BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NoteFormVC.removeFormVC))
+        view.addGestureRecognizer(gestureRecognizer)
         formLabel?.text = choosenFormLabel ?? ""
         setDataTextFieldsForUpdating()
         gameTextField.delegate = self
@@ -35,6 +38,10 @@ final class NoteFormVC: BaseVC {
         setUpGameNamePickerView()
     }
     
+    @objc func removeFormVC() {
+        self.dismiss(animated: true, completion: nil)
+    }
+                                         
     private func setDataTextFieldsForUpdating() {
         if let note = choosenNote {
             if let name = note.gameName {
@@ -55,13 +62,22 @@ final class NoteFormVC: BaseVC {
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         guard let formType = formLabel.text else { return }
-        noteFormViewModel.newOrEditForm(formType: formType, gameText: gameTextField.text, noteText: noteTextField.text, games: games, selectedNote: choosenNote) { isSuccess, error in
-            if isSuccess {
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                guard let error = error else { return }
-                self.showErrorAlert(message: error) {
-                    self.navigationController?.popViewController(animated: true)
+        
+        guard let name = gameTextField.text else {return }
+
+        guard let note = noteTextField.text else { return }
+        
+        if name.isEmpty || note.isEmpty {
+            showErrorAlert(message: ConstantValue.INPUT_CANNOT_BE_EMPTY.rawValue) {
+            }
+        } else {
+            noteFormViewModel.newOrEditForm(formType: formType, name: name, note: note, games: games, selectedNote: choosenNote) { isSuccess, error in
+                if isSuccess {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    guard let error = error else { return }
+                    self.showErrorAlert(message: error) {
+                    }
                 }
             }
         }
@@ -88,7 +104,7 @@ extension NoteFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
         case 1:
             return listOfGameName[row]
         default:
-            return "Data not found"
+            return ConstantValue.DATA_NOT_FOUND.rawValue
         }
     }
     

@@ -13,9 +13,7 @@ final class NotesListVC: BaseVC {
     
     private let floatingButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-
         button.backgroundColor = .systemPink
-        
         let image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .medium))
         button.setImage(image, for: .normal)
         button.tintColor = .white
